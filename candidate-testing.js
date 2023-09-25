@@ -40,13 +40,21 @@ function gradeQuiz(candidateAnswers) {
   }else{
     console.log("Incorrect answer");
   }*/
+
+  
   for(let i=0;i<correctAnswers.length;i++){
     console.log(`candidateanswer:${candidateAnswers[i]}  correctanswer:${correctAnswers[i]}`)
   }
 
 
   let grade;  //TODO 3.2 use this variable to calculate the candidates score.
-
+  let noOfCorrectAnswers =0;
+  for(let i=0;i<correctAnswers.length;i++){
+   if(candidateAnswers[i].toUpperCase() == correctAnswers[i].toUpperCase()){
+    noOfCorrectAnswers++;
+   }
+  }
+  grade=noOfCorrectAnswers/questions.length*100;
 
   return grade;
 }
@@ -56,7 +64,14 @@ function runProgram() {
   // TODO 1.1c: Greet candidate using their name //
    console.log("Hello " + candidateName +"!");
   askQuestion();
-  gradeQuiz(this.candidateAnswers);
+  let grade=gradeQuiz(this.candidateAnswers);
+  if(grade>80)  {
+    //passed
+    console.log(candidateName+" passed the quiz");
+  }else{
+    //failed
+    console.log(candidateName+" failed the quiz");
+  }
 }
 
 // ----------- Don't write any code or change any code below this line ---------- //
